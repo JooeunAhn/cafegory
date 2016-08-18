@@ -1,3 +1,4 @@
-splite3
+db.splite3
 __pycache__
 migrations
+*.pyc
