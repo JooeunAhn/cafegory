@@ -2,6 +2,6 @@ from django.shortcuts import render
 from cafe.models import Cafe
 
 def index(request):
-	return render(request,"inde	x.html",{
+	return render(request,"cafe/index.html",{
 		})
 
