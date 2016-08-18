@@ -7,6 +7,7 @@ class Cafe(models.Model):
     is_wifi = models.BooleanField(default=False)
     is_plug = models.BooleanField(default=False)
     latlng = models.CharField(max_length=100)
+    image = models.ImageField(blank=True, upload_to='cafe_images')
 
     @property
     def lat(self):
