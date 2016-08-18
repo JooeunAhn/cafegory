@@ -1,4 +1,4 @@
-{% extends "cafe/base.html" %}
+{% extends "base.html" %}
 {% block content %}
 
 {% for cafe in cafe_list %}
@@ -7,14 +7,13 @@
         <img class="img-responsive" src="http://www.econovill.com/news/photo/201511/269538_71072_3416.jpg">
     </div>
     <div class="col-xs-8">
-        <h2>스타벅스</h2>
-        <p>wifi : on</p>
-        <p>smoke : on</p>
-        <p>24 : on</p>
-        <p>plug : on</p>
+        <h2><a href="{% url 'cafe:cafe_detail' cafe.pk %}">{{cafe.name}}</a></h2>
+        <p>wifi : {{cafe.name}}</p>
+        <p>smoke : {{cafe.is_smoke}}</p>
+        <p>24 : {{cafe.is_24}}</p>
+        <p>plug : {{cafe.is_plug}}</p>
     </div>
 </div>
-
 {% endfor %}
 
 {% endblock %}
