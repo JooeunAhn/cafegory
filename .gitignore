@@ -1,4 +1,4 @@
-db.splite3
 __pycache__
-migrations
+*/migrations/*
 *.pyc
+db.sqlite3
