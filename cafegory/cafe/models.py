@@ -6,6 +6,8 @@ class Cafe(models.Model):
     is_smoke = models.BooleanField(default=False)
     is_wifi = models.BooleanField(default=False)
     is_plug = models.BooleanField(default=False)
+    is_parking = models.BooleanField(default=False)
+    address = models.CharField(max_length=100)
     latlng = models.CharField(max_length=100)
     image = models.ImageField(blank=True, upload_to='cafe_images')
 
