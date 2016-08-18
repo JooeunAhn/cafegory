@@ -1,0 +1,9 @@
+.container{
+	max-width:1000px;
+}
+.list_div{
+	height:30px;
+	border-bottom:1px solid;
+	border-top:1px solid;
+	font-size:20px;
+}

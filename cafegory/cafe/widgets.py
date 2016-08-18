@@ -18,3 +18,4 @@ class GoogleMapPointWidget(forms.TextInput):
         })
 
         return super(GoogleMapPointWidget, self).render(name, value, attrs) + html
+

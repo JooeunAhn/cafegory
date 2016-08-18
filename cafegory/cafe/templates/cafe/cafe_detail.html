@@ -1,1 +1,27 @@
-{{cafe.name}}
+{% extends "base.html" %}
+{% block content %}
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+<script>
+function initMap() {
+    var position = { lat: {{ lat }}, lng: {{ lng }} };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: position
+    });
+
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map
+    });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADYOYuou2GuChlOV2Kn75Eizfnq11IQg4&callback=initMap"></script>
+<h2>{{cafe.name}}</h2>
+<div></div>
+24시간? {{cafe.is_24}}
+흡연가능? {{cafe.is_smoke}}
+플러그? {{cafe.is_plug}}
+와이파이? {{cafe.is_wifi}}
+
+{% endblock %}

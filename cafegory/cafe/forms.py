@@ -10,3 +10,4 @@ class CafeForm(forms.ModelForm):
         widgets = {
             'latlng': GoogleMapPointWidget,
         }
+

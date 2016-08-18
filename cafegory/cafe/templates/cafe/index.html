@@ -2,16 +2,21 @@
 {% block content %}
 
 {% for cafe in cafe_list %}
-<div class="row">
-    <div class="col-xs-4">
-        <img class="img-responsive" src="http://www.econovill.com/news/photo/201511/269538_71072_3416.jpg">
-    </div>
-    <div class="col-xs-8">
-        <h2><a href="{% url 'cafe:cafe_detail' cafe.pk %}">{{cafe.name}}</a></h2>
-        <p>wifi : {{cafe.name}}</p>
-        <p>smoke : {{cafe.is_smoke}}</p>
-        <p>24 : {{cafe.is_24}}</p>
-        <p>plug : {{cafe.is_plug}}</p>
+<div class="row list_div">
+    <div class="col-xs-12">
+        <a href="{% url 'cafe:cafe_detail' cafe.pk %}">{{cafe.name}}</a>
+        {% if cafe.is_wifi %}
+            <span>와이파이</span>
+        {% endif %}
+        {% if cafe.is_smoke %}
+            <span>흡연</span>
+        {% endif %}
+        {% if cafe.is_24 %}
+            <span>24시</span>
+        {% endif %}
+        {% if cafe.is_plug %}
+            <span>플러그</span>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
