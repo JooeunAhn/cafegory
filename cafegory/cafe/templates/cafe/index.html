@@ -1,5 +1,20 @@
 {% extends "cafe/base.html" %}
 {% block content %}
 
-이거 테스트
+{% for cafe in cafe_list %}
+<div class="row">
+    <div class="col-xs-4">
+        <img class="img-responsive" src="http://www.econovill.com/news/photo/201511/269538_71072_3416.jpg">
+    </div>
+    <div class="col-xs-8">
+        <h2>스타벅스</h2>
+        <p>wifi : on</p>
+        <p>smoke : on</p>
+        <p>24 : on</p>
+        <p>plug : on</p>
+    </div>
+</div>
+
+{% endfor %}
+
 {% endblock %}
