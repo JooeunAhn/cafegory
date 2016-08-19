@@ -3972,7 +3972,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 9px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -8072,7 +8072,7 @@ p {
 }
 .showcase .item.item_2 {
   background-image: url(../img/home_2.jpg);
-  background-position: bottom center;
+
 }
 .showcase .item.item_3 {
   background-image: url(../img/home_3.jpg);

@@ -10,8 +10,10 @@
   }
   #false {
     color:#D8D8D8;
-  }
+}
+
  </style>
+
 
 
 <!-- MAP -->
@@ -34,7 +36,8 @@ function initMap() {
 
 <div class="row">
   <div class="container">
-    <div class="col-xs-12"><h2>{{cafe.name}}</h2></div>
+    <div class="col-xs-12"><h2>{{cafe.name}}{% if user.is_staff %}<a href = "{% url 'cafe:cafe_edit' cafe.pk %}"> 수정</a>
+      {% endif %}</h2></div>
     <div class="col-xs-12"><hr/></div>
     <div class="col-xs-6">
     <center>
@@ -46,11 +49,9 @@ function initMap() {
     </center>
     </div>
     <div class="col-xs-6">
-      <h5>주소</h5><hr/>
-      {% if user.is_staff %}
-      <a href = "{% url 'cafe:cafe_edit' cafe.pk %}">수정</a>
-      {% endif %}
-      <p>{{cafe.address|linebreaks}}</p>
+      <p><span>주소</span>: {{cafe.address}}</p><hr/>
+      <p><span>연락처</span>: {{cafe.tel}}</p><hr/>
+      <p><span>마감시간</span>: {{cafe.end_time}}</p><hr/>
     </div>
   </div>
 </div>

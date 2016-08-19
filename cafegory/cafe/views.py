@@ -3,9 +3,18 @@ from cafe.models import Cafe
 from cafe.forms import CafeForm
 from django.contrib.admin.views.decorators import staff_member_required
 
+
 def index(request):
-	cafe_list = Cafe.objects.all()
-	return render(request,"cafe/index.html",{"cafe_list":cafe_list})
+    return render(request, 'cafe/index.html', {})
+
+def cafe_list(request,location):
+    converter = {"snu":"서울대입구","hongdae":"홍대입구","kangnam":"강남역"}
+    location = converter[location]
+    if not Cafe.objects.filter(location=location).exists():
+        return redirect("cafe:index")
+    cafe_list = Cafe.objects.filter(location=location)
+    return render(request,"cafe/cafe_list.html",{"cafe_list":cafe_list,"location":location,})
+
 
 def cafe_detail(request,pk):
 	cafe = get_object_or_404(Cafe,pk=pk)
