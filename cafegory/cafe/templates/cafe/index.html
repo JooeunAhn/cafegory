@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+
+<script>
+function initMap() {
+    var position = { lat: 37.481423, lng: 126.952766};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: position
+    });
+    {% for cafe in cafe_list %}
+    var marker = new google.maps.Marker({
+        position: { lat : {{cafe.lat}}, lng : {{cafe.lng}} },
+        map: map
+    });
+    {% endfor %}
+}
+</script>
+<script type="text/javascript">
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADYOYuou2GuChlOV2Kn75Eizfnq11IQg4&callback=initMap"></script>
+
 <p>
 {% if user.is_staff %}
 <a href= "{% url 'cafe:cafe_new' %}">새 카페 추가</a>
