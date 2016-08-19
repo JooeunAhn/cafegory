@@ -8,15 +8,29 @@
 	font-size:20px;
 }
 #logo{
-	width:20px;
+
+    width:100px;
+    position: absolute;
+    bottom: 5%;
+    left: 43%;
+    right: 10%;
+
 }
+
+#logo2{
+    width: 50px;
+}
+
 #index_tabs{
 	width:100%;
+    align-content: center;
 }
 #index_tabs li a{
-	background-color: #e9e9e9;
+    border-style: solid;
+    border-color: #8FA8D4;
+	background-color: #FFFFFF;
 	border-radius:0;
-	color:black;
+	color:#8FA8D4;
 }
 #index_tabs li a:hover{
 	background-color:#8FA8D4;
@@ -25,6 +39,9 @@
 #main_navbar{
 	height:100px;
 }
+
+
+
 .navbar-brand{
 	height:100px	;
 	padding:35px 15px;
@@ -42,7 +59,7 @@
 #header{
 	width:100%;
 	height:100px;
-	position:fixed;
+	/* position:fixed; */
 }
 #body{
     	padding-top:100px}
