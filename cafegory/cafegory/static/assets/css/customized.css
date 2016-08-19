@@ -1,0 +1,64 @@
+.modal-bady{
+    -webkit-overflow-scrolling: touch;
+}
+
+#An_modal{
+    display:none;
+    position:absolute;
+    width:80%;
+}
+
+.modal-header{
+    background-color: #313131;
+}
+
+/*
+#modal_content{
+    height: 750px;
+    width: 730px;
+}
+*/
+
+.modal-dialog{
+    width:80%;
+}
+
+#icon_img_footer{
+    width:80%;
+    margin:4%;
+}
+
+#copy_right{
+    position: absolute;
+    right:0px;
+}
+
+#image_container{
+    position: absolute;
+    width: 100%;
+}
+
+#creators{
+    display: block;
+
+    float:left;
+    /*
+    width:150px;
+    */
+    padding:2%;
+    margin:5%;
+
+}
+
+#creators2{
+    display: block;
+    float:left;
+    margin:0 13% auto;
+}
+
+#ourface{
+    margin:10%;
+    padding:3%;
+    width:150px;
+    height:150px;
+}
