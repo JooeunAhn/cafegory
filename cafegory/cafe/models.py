@@ -10,6 +10,8 @@ class Cafe(models.Model):
     address = models.CharField(max_length=100)
     latlng = models.CharField(max_length=100)
     image = models.ImageField(blank=True, upload_to='cafe_images')
+    timeinfo = models.CharField(max_length=100)
+    tel = models.CharField(max_length=15)
 
     @property
     def lat(self):
@@ -22,3 +24,4 @@ class Cafe(models.Model):
         if self.latlng:
             return self.latlng.split(',')[1]
         return None
+
