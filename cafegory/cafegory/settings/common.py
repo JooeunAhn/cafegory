@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cafe',
-    'bootstrap3'
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -131,3 +131,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+
+TEMPLATE_DEBUG  = DEBUG

@@ -1,7 +1,21 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
-<div id="map" style="width: 100%; height: 400px;"></div>
+<style>
+  #thumbnail_img {
+      width: 60%;
+      height: 60%;
+      background-position: center center;
+      background-repeat: no-repeat;
+  }
+  #false {
+    color:#D8D8D8;
+  }
+ </style>
 
+
+<!-- MAP -->
+<div id="map" style="width: 100%; height: 400px;"></div>
 <script>
 function initMap() {
     var position = { lat: {{ lat }}, lng: {{ lng }} };
@@ -17,11 +31,65 @@ function initMap() {
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADYOYuou2GuChlOV2Kn75Eizfnq11IQg4&callback=initMap"></script>
-<h2>{{cafe.name}}</h2>
-<div></div>
-24시간? {{cafe.is_24}}
-흡연가능? {{cafe.is_smoke}}
-플러그? {{cafe.is_plug}}
-와이파이? {{cafe.is_wifi}}
+
+
+
+<div class="row">
+  <div class="col-xs-12"><h2>{{cafe.name}}</h2></div>
+  <div class="col-xs-6">
+  <center>
+  {% if cafe.image %}
+  <img id="thumbnail_img" class="img-thumbnail img-responsive" src = "{{cafe.image.url}}">
+  {% else %}
+  <img id="thumbnail_img" class="img-thumbnail img-responsive" src = "{% static 'images/no-preview-big1.jpg' %}">
+  {% endif %}
+  </center>
+  </div>
+  <div class="col-xs-6">
+    <h5>주소</h5><hr/>
+    {% if user.is_staff %}
+    <a href = "{% url 'cafe:cafe_edit' cafe.pk %}">수정</a>
+    {% endif %}
+    <p>{{cafe.address|linebreaks}}</p>
+  </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="jumbotron">
+        <center>
+        {% if cafe.is_24 %}
+        <i class="fa fa-moon-o fa-3x " aria-hidden="true"></i>
+        {% else %}
+        <i id = "false" class="fa fa-moon-o fa-3x" aria-hidden="true"></i>
+        {% endif %}
+
+        {% if cafe.is_smoke %}
+        <i class="fa fa-fire fa-3x " aria-hidden="true"></i>
+        {%else %}
+        <i class="fa fa-fire fa-3x " aria-hidden="true"></i>
+        {% endif %}
+
+        {% if cafe.is_plug %}
+        <i class="fa fa-plug fa-3x" aria-hidden="true"></i>
+        {% else %}
+        <i id = "false" class="fa fa-plug fa-3x" aria-hidden="true"></i>
+        {% endif %}
+
+        {% if cafe.is_wifi %}
+        <i class="fa fa-wifi fa-3x" aria-hidden="true"></i>
+        {% else %}
+        <i id = "false" class="fa fa-wifi fa-3x" aria-hidden="true"></i>
+        {% endif %}
+
+        {% if cafe.is_parking %}
+        <i class="fa fa-car fa-3x" aria-hidden="true"></i>
+        {% else %}
+        <i id = "false" class="fa fa-car fa-3x" aria-hidden="true"></i>
+        {% endif %}
+        </center>
+    </div>
+</div>
 
 {% endblock %}
