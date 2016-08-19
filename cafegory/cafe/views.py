@@ -10,11 +10,10 @@ def index(request):
 def cafe_list(request,location):
     converter = {"snu":"서울대입구","hongdae":"홍대입구","kangnam":"강남역"}
     location = converter[location]
-    print(location)
     if not Cafe.objects.filter(location=location).exists():
         return redirect("cafe:index")
     cafe_list = Cafe.objects.filter(location=location)
-    return render(request,"cafe/cafe_list.html",{"cafe_list":cafe_list})
+    return render(request,"cafe/cafe_list.html",{"cafe_list":cafe_list,"location":location,})
 
 
 def cafe_detail(request,pk):

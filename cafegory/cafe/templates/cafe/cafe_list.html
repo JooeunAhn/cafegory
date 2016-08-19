@@ -6,7 +6,15 @@
 
 <script>
 function initMap() {
-    var position = { lat: 37.481423, lng: 126.952766};
+    var position = {
+      {% if location == "서울대입구" %}
+      lat: 37.481423, lng:126.952766
+      {% elif location == "홍대입구" %}
+      lat:37.558326, lng:126.925566
+      {% elif location == "강남역" %}
+      lat:37.498214, lng:127.027621
+      {% endif %}
+    };
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: position
