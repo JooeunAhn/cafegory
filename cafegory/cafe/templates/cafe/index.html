@@ -16,7 +16,18 @@ function initMap() {
         position: { lat : {{cafe.lat}}, lng : {{cafe.lng}} },
         map: map
     });
+
+    var content = "{{cafe.name}}"
+    var infowindow = new google.maps.InfoWindow()
+    google.maps.event.addListener(marker,'click',(function(marker,content,infowindow){
+        return function() {
+           infowindow.setContent(content);
+           infowindow.open(map,marker);
+        };
+    })(marker,content,infowindow));
+
     {% endfor %}
+
 }
 </script>
 <script type="text/javascript">
