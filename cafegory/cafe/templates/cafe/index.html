@@ -85,32 +85,6 @@
       </div>
       </div> <!-- / .row -->
     </div>
-
-    <!-- CONTENT
-    ================================================== -->
-
-
-      <div class="row isotope-container">
-        {% for gallery in gallery_list %}
-        <div class="col-sm-4 col-lg-3 isotope-item {% for category in gallery.category.all %}{{category.title}} {% endfor %}">
-
-          <a href="{% url 'gallery:gallery_detail' gallery.pk %}" class="thumbnail">
-            <img src="{{ gallery.image.url }}" alt="...">
-            <div class="caption">
-              <h5>{{gallery.title}}</h5>
-               <p>
-                Hyuis Gallery Description
-               </p>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-      </div> <!-- / .row -->
-    </div> <!-- / .container -->
-
-
-
-
     <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
     <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
 
