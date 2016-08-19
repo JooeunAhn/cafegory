@@ -1,8 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+<div>
+<ul class="nav nav-pills nav-justified" style="margin-top:12rem;">
+  <li class="active"><a href="#">흡연</a></li>
+  <li><a href="#"px;">콘센트</a></li>
+  <li><a href="#">와이파이</a></li>
+  <li><a href="#">24H</a></li>
+  <li><a href="#">주차장</a></li>
+</ul>
+</div>
 
 {% for cafe in cafe_list %}
 <div class="row list_div">
+
     <div class="col-xs-12">
         <a href="{% url 'cafe:cafe_detail' cafe.pk %}">{{cafe.name}}</a>
         {% if cafe.is_wifi %}
