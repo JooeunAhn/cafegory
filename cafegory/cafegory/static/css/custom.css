@@ -8,19 +8,13 @@
 	font-size:20px;
 }
 #logo{
-
-    width:100px;
-    position: absolute;
-    bottom: 5%;
-    left: 43%;
-    right: 10%;
-
+    width: 100px;
+    display: block;
+    margin: 0 auto;
 }
-
 #logo2{
     width: 50px;
 }
-
 #index_tabs{
 	width:100%;
     align-content: center;
@@ -39,12 +33,9 @@
 #main_navbar{
 	height:100px;
 }
-
-
-
 .navbar-brand{
 	height:100px	;
-	padding:35px 15px;
+	padding:0;
 	font-size:28px;
 }
 .navbar-brand-text{
@@ -62,13 +53,32 @@
 	/* position:fixed; */
 }
 #body{
-    	padding-top:100px}
+    	padding-top:0;
+}
 .false{
     color: #D8D8D8;
 }
-
 #cafe_name{
-
 text-align: center;
-
+}
+#index_showcase{
+	margin-top:0;
+}
+.detail_jumbotron i{
+margin:0 40px;
+}
+@media screen and (max-width: 1200px) {
+	.detail_jumbotron i{
+	margin:0 30px;
+	}
+}
+@media screen and (max-width: 767px) {
+	.detail_jumbotron i{
+	margin:0 15px;
+	}
+}
+@media screen and (max-width: 480px) {
+	.detail_jumbotron i{
+	margin:0 5px;
+	}
 }
