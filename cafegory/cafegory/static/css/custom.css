@@ -44,5 +44,13 @@
 	position:fixed;
 }
 #body{
-	padding-top:100px;
+    	padding-top:100px}
+.false{
+    color: #D8D8D8;
+}
+
+#cafe_name{
+
+text-align: center;
+
 }
