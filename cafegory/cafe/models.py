@@ -13,9 +13,9 @@ class Cafe(models.Model):
     timeinfo = models.CharField(max_length=100, default="")
     tel = models.CharField(max_length=15)
     CHOICES = (
-        ("snu","서울대입구"),
-        ("kangnam","강남역"),
-        ("hongdae","홍대입구"),
+        ("서울대입구","서울대입구"),
+        ("강남역","강남역"),
+        ("홍대입구","홍대입구"),
         )
 
     location = models.CharField(max_length=20, choices = CHOICES, default="서울대입구")
