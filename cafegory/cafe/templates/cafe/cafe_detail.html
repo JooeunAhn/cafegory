@@ -33,22 +33,25 @@ function initMap() {
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADYOYuou2GuChlOV2Kn75Eizfnq11IQg4&callback=initMap"></script>
 
 <div class="row">
-  <div class="col-xs-12"><h2>{{cafe.name}}</h2></div>
-  <div class="col-xs-6">
-  <center>
-  {% if cafe.image %}
-  <img id="thumbnail_img" class="img-thumbnail img-responsive" src = "{{cafe.image.url}}">
-  {% else %}
-  <img id="thumbnail_img" class="img-thumbnail img-responsive" src = "{% static 'images/no-preview-big1.jpg' %}">
-  {% endif %}
-  </center>
-  </div>
-  <div class="col-xs-6">
-    <h5>주소</h5><hr/>
-    {% if user.is_staff %}
-    <a href = "{% url 'cafe:cafe_edit' cafe.pk %}">수정</a>
+  <div class="container">
+    <div class="col-xs-12"><h2>{{cafe.name}}</h2></div>
+    <div class="col-xs-12"><hr/></div>
+    <div class="col-xs-6">
+    <center>
+    {% if cafe.image %}
+    <img id="thumbnail_img" class="img-thumbnail img-responsive" src = "{{cafe.image.url}}">
+    {% else %}
+    <img id="thumbnail_img" class="img-thumbnail img-responsive" src = "{% static 'images/no-preview-big1.jpg' %}">
     {% endif %}
-    <p>{{cafe.address|linebreaks}}</p>
+    </center>
+    </div>
+    <div class="col-xs-6">
+      <h5>주소</h5><hr/>
+      {% if user.is_staff %}
+      <a href = "{% url 'cafe:cafe_edit' cafe.pk %}">수정</a>
+      {% endif %}
+      <p>{{cafe.address|linebreaks}}</p>
+    </div>
   </div>
 </div>
 
