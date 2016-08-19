@@ -5,6 +5,8 @@
 
 
 <script>
+var map;
+var markers = [];
 function initMap() {
     var position = {
       {% if location == "서울대입구" %}
@@ -15,17 +17,21 @@ function initMap() {
       lat:37.498214, lng:127.027621
       {% endif %}
     };
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: position
     });
     {% for cafe in cafe_list %}
+      addMarker({{cafe.lat}},{{cafe.lng}},{{cafe.pk}},"{{cafe.name}}");
+    {% endfor %}
+}
+
+function addMarker(cafe_lat,cafe_lng,cafe_pk,cafe_name){
     var marker = new google.maps.Marker({
-        position: { lat : {{cafe.lat}}, lng : {{cafe.lng}} },
+        position: { lat : cafe_lat, lng : cafe_lng },
         map: map
     });
-
-    var content = "<a href='{% url 'cafe:cafe_detail' cafe.pk %}'>{{cafe.name}}</a>"
+    var content = "<a href='/cafe/"+cafe_pk+"'>"+cafe_name+"</a>"
     var infowindow = new google.maps.InfoWindow()
     google.maps.event.addListener(marker,'click',(function(marker,content,infowindow){
         return function() {
@@ -33,9 +39,68 @@ function initMap() {
            infowindow.open(map,marker);
         };
     })(marker,content,infowindow));
-    {% endfor %}
+    markers.push(marker);
+  }
 
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
 }
+
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+$(document).ready(function(){
+  $("#all").click(function(){
+  clearMarkers();
+  {% for cafe in cafe_list %}
+    addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
+  {% endfor %}
+});
+  $("#smoke").click(function(){
+  clearMarkers();
+  {% for cafe in cafe_list %}
+    {% if cafe.is_smoke %}
+      addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
+
+    {% endif %}
+  {% endfor %}
+});
+  $("#plug").click(function(){
+  clearMarkers();
+  {% for cafe in cafe_list %}
+    {% if cafe.is_plug %}
+      addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
+    {% endif %}
+  {% endfor %}
+});
+  $("#wifi").click(function(){
+  clearMarkers();
+  {% for cafe in cafe_list %}
+    {% if cafe.is_wifi %}
+      addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
+    {% endif %}
+  {% endfor %}
+});
+  $("#24H").click(function(){
+  clearMarkers();
+  {% for cafe in cafe_list %}
+    {% if cafe.is_24 %}
+      addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
+    {% endif %}
+  {% endfor %}
+});
+  $("#parking").click(function(){
+  clearMarkers();
+  {% for cafe in cafe_list %}
+    {% if cafe.is_parking %}
+      addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
+    {% endif %}
+  {% endfor %}
+});
+});
 </script>
 <script type="text/javascript">
 
@@ -54,33 +119,33 @@ function initMap() {
         <div class="col-sm-12" id="index_tabs">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs gallery__nav" role="tablist">
-              <li role="presentation">
-                <a href="#" role="tab" data-toggle="tab" data-filter="*">
+              <li  role="presentation">
+                <a id="all" href="#" role="tab" data-toggle="tab" data-filter="*">
                   <span class="">ALL</span>
                 </a>
               </li>
-              <li role="presentation">
-                <a href="#" role="tab" data-toggle="tab" data-filter=".smoke">
+              <li  role="presentation">
+                <a id="smoke" href="#" role="tab" data-toggle="tab" data-filter=".smoke">
                   <span class="">흡연</span>
                 </a>
               </li>
               <li role="presentation">
-                <a href="#" role="tab" data-toggle="tab" data-filter=".plug">
+                <a id="plug" href="#" role="tab" data-toggle="tab" data-filter=".plug">
                   <span class="">플러그</span>
                 </a>
               </li>
-              <li role="presentation">
-                <a href="#" role="tab" data-toggle="tab" data-filter=".wifi">
+              <li  role="presentation">
+                <a id="wifi" href="#" role="tab" data-toggle="tab" data-filter=".wifi">
                   <span class="">WIFI</span>
                 </a>
               </li>
               <li role="presentation">
-                <a href="#" role="tab" data-toggle="tab" data-filter=".24H">
+                <a id="24H" href="#" role="tab" data-toggle="tab" data-filter=".24H">
                   <span class="">24H</span>
                 </a>
               </li>
               <li role="presentation">
-                <a href="#" role="tab" data-toggle="tab" data-filter=".parking">
+                <a id="parking" href="#" role="tab" data-toggle="tab" data-filter=".parking">
                   <span class="">주차</span>
                 </a>
               </li>
@@ -127,6 +192,7 @@ function initMap() {
             </div>
           </a>
         </div>
+
         {% endfor %}
       </div>
       </div> <!-- / .row -->
