@@ -102,10 +102,10 @@
       </div>
       <div class="modal-body">
       <center>
-        <select  style="display: inline-block; width:50%;" class="form-control">
-          <option id="choice" value="snu">서울대입구</option>
-          <option id="choice" value="hongdae">홍대입구</option>
-          <option id="choice" value="kangnam">강남역</option>
+        <select id="choice" style="display: inline-block; width:50%;" class="form-control">
+          <option value="snu">서울대입구</option>
+          <option value="hongdae">홍대입구</option>
+          <option value="kangnam">강남역</option>
         </select>
         <button style="margin-left : 20px;" id="search" type="button" class="btn btn-default">검색</button>
       </center>
@@ -120,6 +120,7 @@
 <script type="text/javascript">
   $("#search").click(function(){
     url = /cafe/ + $("#choice").val();
+    console.log(url);
     $(location).attr("href",url);
   });
 </script>
