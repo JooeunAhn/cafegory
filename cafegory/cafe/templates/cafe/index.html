@@ -17,7 +17,7 @@ function initMap() {
         map: map
     });
 
-    var content = "{{cafe.name}}"
+    var content = "<a href='{% url 'cafe:cafe_detail' cafe.pk %}'>{{cafe.name}}</a>"
     var infowindow = new google.maps.InfoWindow()
     google.maps.event.addListener(marker,'click',(function(marker,content,infowindow){
         return function() {
@@ -25,7 +25,6 @@ function initMap() {
            infowindow.open(map,marker);
         };
     })(marker,content,infowindow));
-
     {% endfor %}
 
 }
