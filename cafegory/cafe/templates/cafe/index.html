@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h3>추천 카페 </h3>
+
+<p>상단의 버튼을 누르면 추천 순서대로 정렬됩니다
+{% if user.is_staff %}
+<a href= "{% url 'cafe:cafe_new' %}">새 카페 추가</a>
+{% endif %}
+</p>
+
 {% for cafe in cafe_list %}
 <div class="row list_div">
     <div class="col-xs-12">

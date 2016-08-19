@@ -14,12 +14,24 @@ def cafe_detail(request,pk):
 
 def cafe_new(request):
     if request.method == "POST":
-        form = CafeForm(request.POST)
+        form = CafeForm(request.POST, request.FILES)
         if form.is_valid():
+            form = form.save(commit=False)
             form.save()
             return redirect("cafe:cafe_detail",form.pk)
     else:
         form = CafeForm()
-        return render(request, "cafe/cafe_form.html",{"form":form,})
+    return render(request, "cafe/cafe_form.html",{"form":form,})
 
+def cafe_edit(request,pk):
+    cafe = Cafe.objects.get(pk=pk)
+    if request.method == "POST":
+        form = CafeForm(request.POST, request.FILES,instance=cafe)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.save()
+            return redirect("cafe:cafe_detail", form.pk)
+    else:
+        form = CafeForm(instance=cafe)
+    return render(request, "cafe/cafe_form.html",{"form":form,})
 
