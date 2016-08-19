@@ -7,3 +7,42 @@
 	border-top:1px solid;
 	font-size:20px;
 }
+#logo{
+	width:20px;
+}
+#index_tabs{
+	width:100%;
+}
+#index_tabs button{
+	border-radius:0;
+	color:#8FA8D4;
+}
+#index_tabs button:hover{
+	background-color:#8FA8D4;
+	color:white;
+}
+#main_navbar{
+	height:100px;
+}
+.navbar-brand{
+	height:100px	;
+	padding:35px 15px;
+	font-size:28px;
+}
+.navbar-brand-text{
+	padding-top:38px;
+	color:#8FA8D4 !important;
+}
+.navbar-default{
+	border:none;
+	background: none;
+	margin:0;
+}
+#header{
+	width:100%;
+	height:100px;
+	position:fixed;
+}
+#body{
+	padding-top:100px;
+}

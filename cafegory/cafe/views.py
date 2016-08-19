@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from cafe.models import Cafe
 from cafe.forms import CafeForm
+from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
 	cafe_list = Cafe.objects.all()
@@ -12,6 +13,8 @@ def cafe_detail(request,pk):
 	lng = cafe.lng
 	return render(request,"cafe/cafe_detail.html",{"cafe":cafe, "lat":lat ,"lng":lng })
 
+
+@staff_member_required
 def cafe_new(request):
     if request.method == "POST":
         form = CafeForm(request.POST, request.FILES)
@@ -23,6 +26,8 @@ def cafe_new(request):
         form = CafeForm()
     return render(request, "cafe/cafe_form.html",{"form":form,})
 
+
+@staff_member_required
 def cafe_edit(request,pk):
     cafe = Cafe.objects.get(pk=pk)
     if request.method == "POST":
