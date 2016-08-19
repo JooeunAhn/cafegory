@@ -1,6 +1,6 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
-
 
 <div class="btn-group btn-group-justified" role="group" aria-label="index_tabs" id="index_tabs">
   <div class="btn-group" role="group">
@@ -19,35 +19,68 @@
     <button type="button" class="btn btn-default">주차장</button>
   </div>
 </div>
+
 <p>상단의 버튼을 누르면 추천순서대로 정렬됩니다.</p>
-
 <h3>추천 카페 </h3>
-
 <p>상단의 버튼을 누르면 추천 순서대로 정렬됩니다
 {% if user.is_staff %}
 <a href= "{% url 'cafe:cafe_new' %}">새 카페 추가</a>
 {% endif %}
 </p>
 
-{% for cafe in cafe_list %}
-<div class="row list_div">
-
-    <div class="col-xs-12">
-        <a href="{% url 'cafe:cafe_detail' cafe.pk %}">{{cafe.name}}</a>
-        {% if cafe.is_wifi %}
-            <span>와이파이</span>
-        {% endif %}
-        {% if cafe.is_smoke %}
-            <span>흡연</span>
-        {% endif %}
-        {% if cafe.is_24 %}
-            <span>24시</span>
-        {% endif %}
-        {% if cafe.is_plug %}
-            <span>플러그</span>
-        {% endif %}
-    </div>
+<div class="row">
+  <div id="cafe_name" class="col-xs-7">카페명</div>
+  <div class="col-xs-1">흡연</div>
+  <div class="col-xs-1">콘센트</div>
+  <div class="col-xs-1">wifi</div>
+  <div class="col-xs-1">24H</div>
+  <div class="col-xs-1">주차</div>
 </div>
+
+<div class="container-fluid">
+
+{% for cafe in cafe_list %}
+<hr/>
+<!-- <div class="row list_div"> -->
+  <div class="row">
+    <div class="col-xs-7">
+      <a href="{% url 'cafe:cafe_detail' cafe.pk %}">{{cafe.name}}</a>
+    </div>
+    <div class="col-xs-5">
+
+      {% if cafe.is_smoke %}
+      <i class="col-xs-3 fa fa-fire fa-1x" aria-hidden="true"></i>
+      {% else %}
+      <i class="col-xs-3 fa fa-fire fa-1x false false" aria-hidden="true"></i>
+      {% endif %}
+
+      {% if cafe.is_plug %}
+      <i class="col-xs-2 fa fa-plug fa-1x" aria-hidden="true"></i>
+      {% else %}
+      <i class="col-xs-2 fa fa-plug fa-1x false" aria-hidden="true"></i>
+      {% endif %}
+
+      {% if cafe.is_wifi %}
+      <i class="col-xs-3 fa fa-wifi fa-1x" aria-hidden="true"></i>
+      {% else %}
+      <i class="col-xs-3 fa fa-wifi fa-1x false" aria-hidden="true"></i>
+      {% endif %}
+
+      {% if cafe.is_24 %}
+      <i class="col-xs-2 fa fa-moon-o fa-1x" aria-hidden="true"></i>
+      {% else %}
+      <i class="col-xs-2 fa fa-moon-o fa-1x false" aria-hidden="true"></i>
+      {% endif %}
+
+
+      {% if cafe.is_parking %}
+      <i class="col-xs-1 fa fa-car fa-1x" aria-hidden="true"></i>
+      {% else %}
+      <i class="col-xs-1 fa fa-car fa-1x false" aria-hidden="true"></i>
+      {% endif %}
+    </div>
+  </div>
 {% endfor %}
+</div>
 
 {% endblock %}
