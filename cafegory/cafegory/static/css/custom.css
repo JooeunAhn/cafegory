@@ -8,9 +8,10 @@
 	font-size:20px;
 }
 #logo{
-    width:30%;
+    width: 100px;
+    display: block;
+    margin: 0 auto;
 }
-
 
 #index_tabs{
 	width:100%;
@@ -27,19 +28,37 @@
 	background-color:#8FA8D4;
 	color:white;
 }
-
 .navbar-default{
 	background: none;
 }
 
 #body{
-    	padding-top:100px}
+    	padding-top:0;
+}
 .false{
     color: #D8D8D8;
 }
-
 #cafe_name{
-
 text-align: center;
-
+}
+#index_showcase{
+	margin-top:0;
+}
+.detail_jumbotron i{
+margin:0 40px;
+}
+@media screen and (max-width: 1200px) {
+	.detail_jumbotron i{
+	margin:0 30px;
+	}
+}
+@media screen and (max-width: 767px) {
+	.detail_jumbotron i{
+	margin:0 15px;
+	}
+}
+@media screen and (max-width: 480px) {
+	.detail_jumbotron i{
+	margin:0 5px;
+	}
 }
