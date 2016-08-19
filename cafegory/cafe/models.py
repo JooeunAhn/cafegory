@@ -10,7 +10,7 @@ class Cafe(models.Model):
     address = models.CharField(max_length=100)
     latlng = models.CharField(max_length=100)
     image = models.ImageField(blank=True, upload_to='cafe_images')
-    timeinfo = models.CharField(max_length=100)
+    timeinfo = models.CharField(max_length=100, default="")
     tel = models.CharField(max_length=15)
     CHOICES = (
         ("snu","서울대입구"),
