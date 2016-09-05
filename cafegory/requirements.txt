@@ -3,3 +3,4 @@ Pillow
 jinja2 
 termcolor
 uwsgi
+django-allauth

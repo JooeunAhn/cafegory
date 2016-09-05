@@ -20,8 +20,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    url(r'', include('cafe.urls', namespace='cafe')),
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/',include('accounts.urls', namespace="accounts")),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'', include('cafe.urls', namespace='cafe')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

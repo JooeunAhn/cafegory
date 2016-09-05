@@ -1,4 +1,43 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
+{% load staticfiles %}
 {% block content %}
 
+<style>
+    .btn-kakao {
+    color: #3c3c3c;
+    background-color: #ffeb00;
+    border-color: #ffde00;
+    }
+
+</style>
+
+
+    <!-- CONTENT
+    ================================================== -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+
+          <!-- Sign In form -->
+          <div class="profile__sign-in">
+
+            <h1 class="block-header alt">
+              <span>Sign in to your account</span>
+            </h1>
+            <form action="" method = "POST" enctype="multipart/form-data">
+            {% get_providers as providers %}
+                {% for provider in providers %}
+                    <a title="{{ provider.name }}" href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}" class="btn btn-social btn-block btn-{{ provider.id }} ">
+                    <center>
+                        <h4 style="text-transform: uppercase;">{{ provider.name }} 계정으로 로그인</h4>
+                    </center>
+                    </a>
+            {% endfor %}
+            </form>
+            <hr>
+            </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
