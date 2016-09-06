@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- CONTENT
+    ================================================== -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="profile__aside">
+
+            <div class="profile__img">
+            {% for account in user.socialaccount_set.all %}
+            {% if account.provider == "facebook" %}
+                <img src = "http://graph.facebook.com/{{account.uid}}/picture?type=large">
+            {% else %}
+                <img src="{{account.extra_data.properties.profile_image}}" class="img-responsive" alt="...">
+            {% endif %}
+            {% endfor %}
+
+            </div>
+            {% for account in user.socialaccount_set.all %}
+            <h4 class="profile__name">{{account.extra_data.name}}</h4>
+            {% endfor %}
+            <hr />
+
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#profile__message">
+              <i class="fa fa-envelope-o"></i> Send message
+            </a>
+
+          </div> <!-- / .profile__aside -->
+        </div>
+        <div class="col-sm-9">
+          <div class="profile__body">
+
+            <h1 class="block-header alt">
+              <span>Lorem</span>
+            </h1>
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit provident harum temporibus necessitatibus pariatur facilis asperiores modi quo error, dolorem magni praesentium, deleniti iure perspiciatis voluptates ipsum placeat amet illum!
+            </p>
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium velit, magni delectus quae consectetur distinctio esse ut eligendi, enim veniam. Velit non omnis mollitia quo laudantium quibusdam cupiditate commodi iste!
+            </p>
+
+            <h1 class="block-header alt">
+              <span>Lorem ipsum</span>
+            </h1>
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit provident harum temporibus necessitatibus pariatur facilis asperiores modi quo error, dolorem magni praesentium, deleniti iure perspiciatis voluptates ipsum placeat amet illum!
+            </p>
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium velit, magni delectus quae consectetur distinctio esse ut eligendi, enim veniam. Velit non omnis mollitia quo laudantium quibusdam cupiditate commodi iste!
+            </p>
+
+            <h1 class="block-header alt">
+              <span>Lorem ipsum dolor</span>
+            </h1>
+
+            <blockquote>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            </blockquote>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque incidunt placeat minima id reiciendis. Sint illum neque officiis, assumenda enim totam reiciendis impedit quod culpa reprehenderit eligendi sequi vel harum.
+            </p>
+
+          </div> <!-- / .profile__body -->
+
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+
+
+    <!-- MESSAGE
+    ================================================== -->
+    <div class="modal fade" id="profile__message" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">New message</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label class="sr-only">Subject</label>
+                <input type="text" class="form-control" placeholder="Subject">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Message</label>
+                <textarea rows="5" class="form-control" placeholder="Message"></textarea>
+              </div>
+              <button type="button" class="btn btn-primary">Send message</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </form>
+          </div>
+        </div> <!-- / .modal-content -->
+      </div> <!-- / .moda-dialog -->
+    </div> <!-- / .modal -->
+
+
+{% endblock %}
