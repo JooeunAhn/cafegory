@@ -21,7 +21,8 @@ def cafe_list(request,location):
         form = Comment_to_us_Form(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
-            form.author = request.user
+            if request.user.is_authenticated:
+                form.author = request.user
             form.save()
             messages.success(request,"성공적으로 고객님의 의견이 저장되었습니다. 감사합니다.")
     return render(request,"cafe/cafe_list.html",{"cafe_list":cafe_list,"location":location,})
@@ -30,9 +31,11 @@ def cafe_list(request,location):
 def cafe_detail(request,pk):
     if request.method == "POST":
         form = Comment_to_us_Form(request.POST)
+
         if form.is_valid():
             form = form.save(commit=False)
-            form.author = request.user
+            if request.user.is_authenticated:
+                form.author = request.user
             form.save()
             messages.success(request,"성공적으로 고객님의 의견이 저장되었습니다. 감사합니다.")
 
