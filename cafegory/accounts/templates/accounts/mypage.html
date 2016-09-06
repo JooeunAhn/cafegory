@@ -39,9 +39,10 @@
             <h1 class="block-header alt">
               <span>댓글 단 목록</span>
             </h1>
-            {% for comment_cafe in comment_cafe_list %}
+            {% for cafe_comment in cafe_comment_list %}
             <p class="text-muted">
-            <a href="{% url 'cafe:cafe_detail' comment_cafe.pk %}">{{comment_cafe.name}}</a>
+            <a href="{% url 'cafe:cafe_detail' cafe_comment.cafe.pk %}">{{cafe_comment.cafe.name}}</a>
+            <span>{{cafe_comment.message}}</span>
             </p>
             {% endfor %}
             <h1 class="block-header alt">
