@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.sites',
     'accounts.providers.kakao',
+    'allauth.socialaccount.providers.facebook',
 
 ]
 
