@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
 from cafe.models import Cafe
 from cafe.forms import CafeForm
-from django.contrib.admin.views.decorators import staff_member_required
+
+from accounts.forms import Comment_to_us_Form
 
 
 def index(request):
@@ -13,14 +16,30 @@ def cafe_list(request,location):
     if not Cafe.objects.filter(location=location).exists():
         return redirect("cafe:index")
     cafe_list = Cafe.objects.filter(location=location)
+
+    if request.method == "POST":
+        form = Comment_to_us_Form(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.author = request.user
+            form.save()
+            messages.success(request,"성공적으로 고객님의 의견이 저장되었습니다. 감사합니다.")
     return render(request,"cafe/cafe_list.html",{"cafe_list":cafe_list,"location":location,})
 
 
 def cafe_detail(request,pk):
-	cafe = get_object_or_404(Cafe,pk=pk)
-	lat = cafe.lat
-	lng = cafe.lng
-	return render(request,"cafe/cafe_detail.html",{"cafe":cafe, "lat":lat ,"lng":lng })
+    if request.method == "POST":
+        form = Comment_to_us_Form(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.author = request.user
+            form.save()
+            messages.success(request,"성공적으로 고객님의 의견이 저장되었습니다. 감사합니다.")
+
+    cafe = get_object_or_404(Cafe,pk=pk)
+    lat = cafe.lat
+    lng = cafe.lng
+    return render(request,"cafe/cafe_detail.html",{"cafe":cafe,"lat": lat,"lng":lng,})
 
 
 @staff_member_required
