@@ -8,7 +8,7 @@ def index(request):
     return render(request, 'cafe/index.html', {})
 
 def cafe_list(request,location):
-    converter = {"snu":"서울대입구","hongdae":"홍대입구","kangnam":"강남역"}
+    converter = {"snu":"서울대입구","hanyang":"한양대"}
     location = converter[location]
     if not Cafe.objects.filter(location=location).exists():
         return redirect("cafe:index")

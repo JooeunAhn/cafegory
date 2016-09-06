@@ -16,8 +16,8 @@ class Cafe(models.Model):
         ("서울대입구","서울대입구"),
         ("강남역","강남역"),
         ("홍대입구","홍대입구"),
+        ("한양대","한양대"),
         )
-
     location = models.CharField(max_length=20, choices = CHOICES, default="서울대입구")
     end_time = models.CharField(max_length=40, default="")
 

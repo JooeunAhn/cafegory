@@ -105,8 +105,7 @@
       <center>
         <select id="choice" style="display: inline-block; width:50%;" class="form-control">
           <option value="snu">서울대입구</option>
-          <option value="hongdae">홍대입구</option>
-          <option value="kangnam">강남역</option>
+          <option value="hanyang">한양대</option>
         </select>
         <button style=" border-color:#8FA8D4; background-color: #8FA8D4; margin-left : 20px;" id="search" type="button" class="btn btn-info btn-lg">검색</button>
       </center>
@@ -119,7 +118,6 @@
 <script type="text/javascript">
   $("#search").click(function(){
     url = /cafe/ + $("#choice").val();
-    console.log(url);
     $(location).attr("href",url);
   });
 </script>
