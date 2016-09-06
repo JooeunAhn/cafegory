@@ -1,6 +1,6 @@
 from django import forms
-from cafe.models import Cafe
-from cafe.widgets import GoogleMapPointWidget
+from .models import Cafe, Cafe_comment
+from .widgets import GoogleMapPointWidget
 
 
 class CafeForm(forms.ModelForm):
@@ -11,6 +11,13 @@ class CafeForm(forms.ModelForm):
         widgets = {
             'latlng': GoogleMapPointWidget,
         }
+
+
+class Cafe_comment_Form(forms.ModelForm):
+    class Meta:
+        model = Cafe_comment
+        fields = ["message",]
+
 
 
 

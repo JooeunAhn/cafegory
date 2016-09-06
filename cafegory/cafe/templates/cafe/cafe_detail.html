@@ -58,7 +58,6 @@ function initMap() {
 </div>
 
 <hr/>
-
 <div class="container">
     <div class="jumbotron detail_jumbotron">
         <center>
@@ -67,7 +66,6 @@ function initMap() {
         {% else %}
         <i id = "false" class="fa fa-moon-o fa-3x" aria-hidden="true"></i>
         {% endif %}
-
         {% if cafe.is_smoke %}
         <i class="fa fa-fire fa-3x " aria-hidden="true"></i>
         {% else %}
@@ -85,7 +83,6 @@ function initMap() {
         {% else %}
         <i id = "false" class="fa fa-wifi fa-3x" aria-hidden="true"></i>
         {% endif %}
-
         {% if cafe.is_parking %}
         <i class="fa fa-car fa-3x" aria-hidden="true"></i>
         {% else %}
@@ -94,6 +91,11 @@ function initMap() {
         </center>
     </div>
 </div>
+<hr/>
+<!-- Comments section -->
+<div class="container comments">
+    {% include "cafe/comment_form.html" %}
+</div> <!-- / .comments -->
 <style type="text/css">
 
     .fa {
@@ -125,4 +127,9 @@ function initMap() {
       </div> <!-- / .moda-dialog -->
     </div> <!-- / .modal -->
 
+<script>
+var js_root ="{% static 'js/cafe_detail.js' %}"
+var customjs_root ="{% static 'assets/js/custom.js' %}"
+</script>
+<script src="{% static 'js/cafe_detail.js' %}"></script>
 {% endblock %}

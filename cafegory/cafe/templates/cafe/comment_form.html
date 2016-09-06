@@ -1,0 +1,80 @@
+{% load staticfiles %}
+{% load humanize %}
+  <div class="comments__heading">{{comments.count}} comments</div>
+
+  <!-- New comment form -->
+  {% if user.is_authenticated %}
+  <form name="comments__new" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <textarea name="message" class="form-control" rows="1" placeholder="Write your comment here"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" disabled="disabled" id="comments__new">저장</button>
+  </form>
+  {% endif %}
+
+  <!-- List of comments -->
+  <div class="comments__list">
+
+    {% for comment in comments%}
+    <!-- Comment item -->
+    <div class="comments__item">
+      <div class="comments-item__avatar">
+        {% for account in comment.author.socialaccount_set.all %}
+          {% if account.provider == "facebook" %}
+            <img src = "http://graph.facebook.com/{{account.uid}}/picture?type=large">
+          {% elif account.provider == "kakao" %}
+            <img src="{{account.extra_data.properties.profile_image}}" class="img-responsive" alt="...">
+          {% else %}
+            <img src="{% static 'images/defalut_user.png' %}">
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="comments-item__body">
+        <div class="comments-item__info">
+        {% for account in comment.author.socialaccount_set.all %}
+          <div class="comments-item-info__author">{{account.extra_data.name}}</div>
+        {% endfor %}
+          <div class="comments-item-info__divider">
+            <i class="fa fa-circle"></i>
+          </div>
+          <div class="comments-item-info__timestamp">{{comment.updated_at|naturaltime}}</div>
+          {% if comment.author == request.user %}
+          <div class="comments-item-info__menubar dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu pull-right">
+              <li><a class="comment_edit">수정</a></li>
+              <li><a class="comment_del">삭제</a></li>
+              <form action="{% url 'cafe:cafe_comment_del' comment.pk %}" method="post" class="del-form">
+              {% csrf_token %}
+              </form>
+            </ul>
+          </div>
+          {%endif%}
+          <br />
+          <div class="comments-item__content">
+          {{ comment.message|linebreaks }}
+          </div>
+        </div>
+        {% if comment.author == request.user %}
+        <div class="form-group-upper" style="display: none;">
+          <form action="{% url 'cafe:cafe_comment_edit' comment.pk %}" method="post" class="edit-form">
+            {% csrf_token %}
+            <!-- 기본 댓글 수정 폼 -->
+              <div class="form-group">
+                <textarea name="message" class="form-control" rows="1" placeholder="Write your comment here">{{comment.message}}</textarea>
+              </div>
+          </form>
+          <button class="btn btn-primary comment_edit_submit">저장</button>
+          <button class="btn btn-danger comment_edit_reset">취소</button>
+        </div>
+        {% endif %}
+      <!--  <div class="comments-item__content">
+          {{ comment.message|linebreaks }}
+        </div>-->
+        </div>
+      </div>
+    {% endfor %}
+  </div> <!-- / .comments__list -->

@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Cafe(models.Model):
     name = models.CharField(max_length=100)
@@ -33,3 +34,9 @@ class Cafe(models.Model):
             return self.latlng.split(',')[1]
         return None
 
+class Cafe_comment(models.Model):
+    message = models.TextField(max_length=500)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    cafe = models.ForeignKey(Cafe)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
