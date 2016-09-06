@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load ratings %}
 {% block content %}
     <!-- CONTENT
     ================================================== -->
@@ -36,37 +37,22 @@
           <div class="profile__body">
 
             <h1 class="block-header alt">
-              <span>Lorem</span>
+              <span>댓글 단 목록</span>
             </h1>
+            {% for comment_cafe in comment_cafe_list %}
             <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit provident harum temporibus necessitatibus pariatur facilis asperiores modi quo error, dolorem magni praesentium, deleniti iure perspiciatis voluptates ipsum placeat amet illum!
+            <a href="{% url 'cafe:cafe_detail' comment_cafe.pk %}">{{comment_cafe.name}}</a>
             </p>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium velit, magni delectus quae consectetur distinctio esse ut eligendi, enim veniam. Velit non omnis mollitia quo laudantium quibusdam cupiditate commodi iste!
-            </p>
-
+            {% endfor %}
             <h1 class="block-header alt">
-              <span>Lorem ipsum</span>
+              <span>별점 준 목록</span>
             </h1>
+            {% for rating_cafe in rating_cafe_list %}
             <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit provident harum temporibus necessitatibus pariatur facilis asperiores modi quo error, dolorem magni praesentium, deleniti iure perspiciatis voluptates ipsum placeat amet illum!
+            <a href="{% url 'cafe:cafe_detail' rating_cafe.pk %}">{{rating_cafe.name}}</a>
+            {% ratings rating_cafe %}
             </p>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium velit, magni delectus quae consectetur distinctio esse ut eligendi, enim veniam. Velit non omnis mollitia quo laudantium quibusdam cupiditate commodi iste!
-            </p>
-
-            <h1 class="block-header alt">
-              <span>Lorem ipsum dolor</span>
-            </h1>
-
-            <blockquote>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            </blockquote>
-
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque incidunt placeat minima id reiciendis. Sint illum neque officiis, assumenda enim totam reiciendis impedit quod culpa reprehenderit eligendi sequi vel harum.
-            </p>
-
+            {% endfor %}
           </div> <!-- / .profile__body -->
 
         </div>
