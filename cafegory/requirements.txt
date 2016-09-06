@@ -4,3 +4,4 @@ jinja2
 termcolor
 uwsgi
 django-allauth
+django-star-ratings

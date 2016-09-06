@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^accounts/',include('accounts.urls', namespace="accounts")),
     url(r'^accounts/', include('allauth.urls')),
     url(r'', include('cafe.urls', namespace='cafe')),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load ratings %}
 {% block content %}
 <style>
   #thumbnail_img {
@@ -53,6 +54,7 @@ function initMap() {
       <p><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#us__message">
           <i class="fa fa-envelope-o"></i> Send message
         </a></p><hr/>
+      <p>{% ratings cafe %}</p>
     </div>
   </div>
 </div>

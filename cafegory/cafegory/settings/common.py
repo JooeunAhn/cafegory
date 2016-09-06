@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'accounts.providers.kakao',
     'allauth.socialaccount.providers.facebook',
 
+    #django-star-ratings
+    'star_ratings',
+
 ]
 
 
@@ -79,7 +82,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
             ],
         },
     },

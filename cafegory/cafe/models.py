@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 
 class Cafe(models.Model):
     name = models.CharField(max_length=100)
@@ -21,6 +23,7 @@ class Cafe(models.Model):
         )
     location = models.CharField(max_length=20, choices = CHOICES, default="서울대입구")
     end_time = models.CharField(max_length=40, default="")
+    ratings = GenericRelation(Rating, related_query_name='ratings')
 
     @property
     def lat(self):

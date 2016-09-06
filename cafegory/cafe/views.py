@@ -19,7 +19,7 @@ def cafe_list(request,location):
     if not Cafe.objects.filter(location=location).exists():
         return redirect("cafe:index")
     cafe_list = Cafe.objects.filter(location=location)
-
+    cafe_list = cafe_list.order_by('-ratings__average')
     if request.method == "POST":
         form = Comment_to_us_Form(request.POST)
         if form.is_valid():
