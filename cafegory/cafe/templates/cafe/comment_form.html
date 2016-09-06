@@ -25,9 +25,11 @@
           {% if account.provider == "facebook" %}
             <img src = "http://graph.facebook.com/{{account.uid}}/picture?type=large">
           {% elif account.provider == "kakao" %}
+            {% if account.extra_data.properties.profile_image %}
             <img src="{{account.extra_data.properties.profile_image}}" class="img-responsive" alt="...">
-          {% else %}
+            {% else %}
             <img src="{% static 'images/defalut_user.png' %}">
+            {% endif %}
           {% endif %}
         {% endfor %}
       </div>

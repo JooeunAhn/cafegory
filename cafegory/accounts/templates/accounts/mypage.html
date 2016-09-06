@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block content %}
     <!-- CONTENT
     ================================================== -->
@@ -12,11 +12,14 @@
             {% for account in user.socialaccount_set.all %}
             {% if account.provider == "facebook" %}
                 <img src = "http://graph.facebook.com/{{account.uid}}/picture?type=large">
-            {% else %}
+            {% elif account.provider == "kakao" %}
+              {% if account.extar_data.properties.profile_image %}
                 <img src="{{account.extra_data.properties.profile_image}}" class="img-responsive" alt="...">
+              {% else %}
+                <img src="{% static 'images/defalut_user.png' %}">
+              {% endif %}
             {% endif %}
             {% endfor %}
-
             </div>
             {% for account in user.socialaccount_set.all %}
             <h4 class="profile__name">{{account.extra_data.name}}</h4>
