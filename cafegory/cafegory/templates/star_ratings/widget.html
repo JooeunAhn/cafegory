@@ -1,0 +1,8 @@
+{% extends "star_ratings/widget_base.html" %}
+{% block rating_detail %}
+    {% block rating_user %}
+    {% if not user.is_authenticated and not anonymous_ratings %}
+        <p>Please log in to rate.</p>
+    {% endif %}
+    {% endblock rating_user %}
+{% endblock %}
