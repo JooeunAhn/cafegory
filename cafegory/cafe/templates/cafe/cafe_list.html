@@ -7,6 +7,10 @@
 <script>
 var map;
 var markers = [];
+var pre_markers = [];
+var pre_cafe_pks = [];
+var pre_cafe_names =[];
+
 function initMap() {
     var position = {
       {% if location == "서울대입구" %}
@@ -20,7 +24,7 @@ function initMap() {
       {% endif %}
     };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
+        zoom: 15,
         center: position
     });
     {% for cafe in cafe_list %}
@@ -54,15 +58,20 @@ function clearMarkers() {
   setMapOnAll(null);
 }
 
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
 $(document).ready(function(){
   $("#all").click(function(){
-  clearMarkers();
+  deleteMarkers();
   {% for cafe in cafe_list %}
     addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
   {% endfor %}
 });
   $("#smoke").click(function(){
-  clearMarkers();
+  deleteMarkers();
   {% for cafe in cafe_list %}
     {% if cafe.is_smoke %}
       addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
@@ -71,7 +80,7 @@ $(document).ready(function(){
   {% endfor %}
 });
   $("#plug").click(function(){
-  clearMarkers();
+  deleteMarkers();
   {% for cafe in cafe_list %}
     {% if cafe.is_plug %}
       addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
@@ -79,7 +88,7 @@ $(document).ready(function(){
   {% endfor %}
 });
   $("#wifi").click(function(){
-  clearMarkers();
+  deleteMarkers();
   {% for cafe in cafe_list %}
     {% if cafe.is_wifi %}
       addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
@@ -87,7 +96,7 @@ $(document).ready(function(){
   {% endfor %}
 });
   $("#24H").click(function(){
-  clearMarkers();
+  deleteMarkers();
   {% for cafe in cafe_list %}
     {% if cafe.is_24 %}
       addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
@@ -95,13 +104,40 @@ $(document).ready(function(){
   {% endfor %}
 });
   $("#parking").click(function(){
-  clearMarkers();
+  deleteMarkers();
   {% for cafe in cafe_list %}
     {% if cafe.is_parking %}
       addMarker({{cafe.lat}}, {{cafe.lng}}, {{cafe.pk}}, "{{cafe.name}}");
     {% endif %}
   {% endfor %}
 });
+});
+
+function reviveMarkers() {
+  for (i=0; i<pre_markers.length; i++){
+      addMarker(pre_markers[i].getPosition().lat(),pre_markers[i].getPosition().lng(),pre_cafe_pks[i],pre_cafe_names[i]);
+    }
+  }
+
+$(document).ready(function(){
+  {% for cafe in cafe_list %}
+  $("#{{cafe.pk}}").mouseenter(function(){
+    pre_markers = [];
+    pre_cafe_pks = [];
+    pre_cafe_names = [];
+    pre_markers = markers;
+    pre_cafe_pks.push({{cafe.pk}});
+    pre_cafe_names.push("{{cafe.name}}");
+    deleteMarkers();
+    addMarker({{cafe.lat}},{{cafe.lng}},{{cafe.pk}},"{{cafe.name}}");
+  });
+
+  $("#{{cafe.pk}}").mouseleave(function(){
+    deleteMarkers();
+    reviveMarkers();
+  });
+  {% endfor %}
+
 });
 </script>
 <script type="text/javascript">
@@ -164,7 +200,7 @@ $(document).ready(function(){
         <div class="col-xs-12 isotope-item {% if cafe.is_smoke %}smoke {% endif%}{% if cafe.is_plug %}plug {% endif %}{% if cafe.is_wifi %}wifi {% endif %}{% if cafe.is_24 %}24H {% endif %}{% if cafe.is_parking %}parking {% endif %}">
           <a href="{% url 'cafe:cafe_detail' cafe.pk %}" class="thumbnail">
 <!-- <div class="row list_div"> -->
-            <div class="row">
+            <div id="{{cafe.pk}}" class="row">
               <div class="col-xs-4">
               {{cafe.name}}
               </div>
