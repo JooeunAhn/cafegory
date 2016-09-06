@@ -58,8 +58,22 @@
   ga('send', 'pageview');
 
   </script>
+  <style>
+  .alert-debug {
+    background-color: #eeeeee;
+    border-color: #eeeeee;
+    color: #333;
+  }
+  </style>
   </head>
   <body>
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
   <div id="header">
   {% include "header.html" %}
   </div>

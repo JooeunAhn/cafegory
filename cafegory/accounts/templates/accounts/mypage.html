@@ -81,16 +81,13 @@
             <h4 class="modal-title" id="myModalLabel">New message</h4>
           </div>
           <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label class="sr-only">Subject</label>
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
+            <form action="" method="POST">
+                {% csrf_token %}
               <div class="form-group">
                 <label class="sr-only">Message</label>
-                <textarea rows="5" class="form-control" placeholder="Message"></textarea>
+                <textarea name="message" rows="5" class="form-control" placeholder="Message"></textarea>
               </div>
-              <button type="button" class="btn btn-primary">Send message</button>
+              <button type="submit" class="btn btn-primary">Send message</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </form>
           </div>
