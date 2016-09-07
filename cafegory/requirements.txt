@@ -5,3 +5,5 @@ termcolor
 uwsgi
 django-allauth
 django-star-ratings
+django-storages
+boto
