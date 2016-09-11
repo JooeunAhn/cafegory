@@ -12,12 +12,12 @@
             <div class="profile__img">
             {% for account in user.socialaccount_set.all %}
             {% if account.provider == "facebook" %}
-                <img src = "http://graph.facebook.com/{{account.uid}}/picture?type=large">
+                <img class="img-responsive" src = "http://graph.facebook.com/{{account.uid}}/picture?type=large">
             {% elif account.provider == "kakao" %}
               {% if account.extar_data.properties.profile_image %}
-                <img src="{{account.extra_data.properties.profile_image}}" class="img-responsive" alt="...">
+                <img class="img-responsive" src="{{account.extra_data.properties.profile_image}}" class="img-responsive" alt="...">
               {% else %}
-                <img src="{% static 'images/defalut_user.png' %}">
+                <img class="img-responsive" src="{% static 'images/defalut_user.png' %}">
               {% endif %}
             {% endif %}
             {% endfor %}

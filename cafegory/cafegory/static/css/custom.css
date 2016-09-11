@@ -8,18 +8,32 @@
 	font-size:20px;
 }
 #logo{
-    width: 100px;
+    width: 70px;
     display: block;
     margin: 0 auto;
+}
+#log_in_out{
+	position: absolute;
+	top:30px;
+	right:10px;
+	color:grey;
+	z-index:100;
+}
+#log_in_out a{
+color:grey;
+}
+#log_in_out a:hover{
+color:grey;
+text-decoration: none;
 }
 
 #index_tabs{
 	width:100%;
-    align-content: center;
+	align-content: center;
 }
 #index_tabs li a{
-    border-style: solid;
-    border-color: #8FA8D4;
+	border-style: solid;
+	border-color: #8FA8D4;
 	background-color: #FFFFFF;
 	border-radius:0;
 	color:#8FA8D4;
@@ -33,7 +47,7 @@
 }
 
 #body{
-    	padding-top:0;
+	padding-top:0;
 }
 .false{
     color: #D8D8D8;
@@ -61,4 +75,9 @@ margin:0 40px;
 	.detail_jumbotron i{
 	margin:0 5px;
 	}
+}
+
+.filter_on a{
+	background:#8FA8D4 !important;
+	color:white !important;
 }

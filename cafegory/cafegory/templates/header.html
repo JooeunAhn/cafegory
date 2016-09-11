@@ -1,6 +1,16 @@
 {% load staticfiles %}
 <div>
-  <a href="/">
-    <img id="logo" src="{% static 'img/cofinfin.png' %}"></a>
-  </a>
+	<a href="/">
+		<img id="logo" src="{% static 'img/cofinfin.png' %}"></a>
+	</a>
+	{% if request.user.is_authenticated %}
+		<div id="log_in_out">
+			<a href="{% url 'accounts:mypage' %}">마이페이지</a>
+			<a href="{% url 'accounts:logout' %}">로그아웃</a>
+		</div>
+	{% else %}
+		<div id="log_in_out">
+			<a href="{% url 'accounts:login' %}">로그인</a>
+		</div>
+	{% endif %}
 </div>

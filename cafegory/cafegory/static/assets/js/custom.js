@@ -143,13 +143,36 @@ $(function() {
 
     // Filter items on click
     $(".gallery__nav > li").click(function() {
+      //filter on, off by class
+      if( $(this).hasClass("filter_on") ){
+        $(this).removeClass("filter_on");
+      }else{
+        $(this).addClass("filter_on");
+      }
 
+      //make filterValue
+      var filterValue ='';
+      if( $("#smoke_li").hasClass("filter_on") ) {
+        filterValue += ".smoke";
+      }
+      if( $("#plug_li").hasClass("filter_on") ) {
+        filterValue += ".plug";
+      }
+      if( $("#wifi_li").hasClass("filter_on") ) {
+        filterValue += ".wifi";
+      }
+      if( $("#24h_li").hasClass("filter_on") ) {
+        filterValue += ".24H";
+      }
+      if( $("#parking_li").hasClass("filter_on") ) {
+        filterValue += ".parking";
+      }
       // Filter items
-      var filterValue = $(this).children("a").attr('data-filter');
+      //var filterValue = $(this).children("a").attr('data-filter');
       $container.isotope({ filter: filterValue });
 
       // Change active links in navigation
-      $(this).addClass("active").siblings("li").removeClass("active");
+      //$(this).addClass("active").siblings("li").removeClass("active");
 
       return false;
     });
